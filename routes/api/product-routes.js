@@ -8,12 +8,45 @@ router.get('/', (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
 });
+// router.get('/', async (req, res) => {
+//   try {
+//     // find all products with associated Category and Tag data
+//     const products = await Product.findAll({
+//       include: [
+//         { model: Category },
+//         { model: Tag, through: ProductTag }
+//       ]
+//     });
+
+//     res.status(200).json(products);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to retrieve products' });
+//   }
+// });
 
 // get one product
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
 });
+
+// router.get('/', async (req, res) => {
+//   try {
+//     // find all products with associated Category and Tag data
+//     const products = await Product.findbyid()({
+//       include: [
+//         { model: Category },
+//         { model: Tag, through: ProductTag }
+//       ]
+//     });
+
+//     res.status(200).json(products);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Failed to retrieve products' });
+//   }
+// });
 
 // create new product
 router.post('/', (req, res) => {
@@ -25,6 +58,40 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
+
+    // router.post('/', async (req, res) => {
+    //   try {
+    //     // Destructuring the values from req.body
+    //     const { product_name, price, stock, tagIds } = req.body;
+    
+    //     // Create a new product
+    //     const newProduct = await Product.create({
+    //       product_name,
+    //       price,
+    //       stock,
+    //     });
+    
+    //     // If tagIds are provided, associate the tags with the new product
+    //     if (tagIds && tagIds.length) {
+    //       const tags = await Tag.findAll({
+    //         where: {
+    //           id: tagIds,
+    //         },
+    //       });
+    
+    //       // Associate the tags with the new product
+    //       await newProduct.addTags(tags);
+    //     }
+    
+    //     // Send a success response
+    //     res.status(200).json({ message: 'Product created successfully', product: newProduct });
+    //   } catch (err) {
+    //     // Handle errors
+    //     console.error(err);
+    //     res.status(500).json({ error: 'Failed to create a new product' });
+    //   }
+    // });
+
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
