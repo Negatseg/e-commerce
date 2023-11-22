@@ -63,6 +63,7 @@ Product.init(
     // Example foreign key:
     category_id: {
       type: DataTypes.INTEGER,
+      allowNull: true,
       references: {
         model: 'category', // Assuming you have a 'category' model/table
         key: 'id',
